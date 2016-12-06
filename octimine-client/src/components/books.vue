@@ -96,7 +96,7 @@
 
 		methods: {
 			getList (page) {
-console.log('teste');				
+	
 				this.pageActive = page;
 		  		http.get('books', {params: {page: page}})
 			  		.then(response => response.data)
