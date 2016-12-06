@@ -60,7 +60,7 @@
 						<h4 class="modal-title">Remove book</h4>
 					</div>
 					<div class="modal-body">
-						
+						Do you really want to delete the book?
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal" @click="closeRemove()">No</button>
@@ -96,6 +96,7 @@
 
 		methods: {
 			getList (page) {
+console.log('teste');				
 				this.pageActive = page;
 		  		http.get('books', {params: {page: page}})
 			  		.then(response => response.data)
@@ -112,20 +113,21 @@
 
 			removeBook () {
 				$('#modal').modal('toggle')
-
 				const self = this
+				self.success = ''
+				self.error 	 = ''
 		  		http.delete('books/' + this.idRemove)
 			  		.then(response => response.data)
 		           	.then(data => {
 						self.success = true
-						self.message = "Livro removido com sucesso"
+						self.message = "The book has been successfully removed."
 						self.idRemove = ''
 						self.hideAlert()
-						self.getList(pageActive)
+						self.getList(self.pageActive)
 		       		})
 					.catch(function (error) {
 	    				self.error = true
-	    				self.message = 'Não foi possíve remover o livro'
+	    				self.message = 'Could not remove book.'
 	    				self.hideAlert()
 	  				});
 		    },

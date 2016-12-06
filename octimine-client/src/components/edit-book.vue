@@ -48,7 +48,6 @@
 		<div class="row">
 			<div class="alert alert-success" :class="{ 'alert-success': success, 'alert-danger': error }" role="alert" v-if="message">{{message}}</div>
 			<div class="col-md-12 footer">
-
 				<router-link to="">
 					<a href="#" class="btn btn-success" @click="save()">Save</a>
 				</router-link>
@@ -94,12 +93,12 @@
 				.then(response => response.data)
 				.then(data => {
 					self.success = true
-					self.message = "Livro removido com sucesso"
+					self.message = "The book has been saved successfully."
 					self.hideAlert()
 				})
 				.catch(function (error) {
     				selfs.error = true
-    				self.message = 'Não foi possíve remover o livro'
+    				self.message = 'Could not save book'
 					self.hideAlert()
   				});
 			},
