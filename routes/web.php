@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+/**
+ * Route information regarding the EmployeeController
+ */
+Route::get('/employee/{id?}', 'EmployeeController@index');
+Route::post('/employee', 'EmployeeController@store');
+Route::post('/employee/{id}', 'EmployeeController@update');
+Route::delete('/employee/{id}', 'EmployeeController@destroy');
