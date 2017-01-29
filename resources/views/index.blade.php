@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Larvel 5.3 with Angular JS</title>
+    <!-- Font awesome minified CSS for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -16,9 +18,11 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <!-- AngularJS files -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.1/angular-material.min.js"></script>
 
+    <!-- Local angular files for Employee data operations -->
     <script src="{{ asset('angularjs/app.js') }}"></script>
     <script src="{{ asset('angularjs/controllers/EmployeeController.js') }}"></script>
 
@@ -38,7 +42,7 @@
 <body id="page-top" class="index">
 
 <div class="container">
-    <h2>Sample Application</h2>
+    <h2>Laravel 5.3 CRUD API with AngularJS</h2>
 
     <div ng-controller="EmployeeController">
         <table class="table table-striped">
@@ -49,7 +53,8 @@
                 <th>Email</th>
                 <th>Branch</th>
                 <th>
-                    <button id="btn-add" class="btn btn-success btn-xs" ng-click="toggle('add', 0)">Add</button>
+                    <button title="Insert" id="btn-add" class="btn btn-success btn-xs" ng-click="toggle('add', 0)"><i
+                                class="fa fa-plus fa-2x" aria-hidden="true"></i></button>
                 </th>
             </tr>
             </thead>
@@ -60,14 +65,88 @@
                 <td>@{{ employee.email }}</td>
                 <td>@{{ employee.branch }}</td>
                 <td>
-                    <button class="btn btn-warning btn-xs btn-details" ng-click="toggle('edit', employee.id)">Edit
+                    <button title="Edit" class="btn btn-warning btn-xs btn-details"
+                            ng-click="toggle('edit', employee.id)"><i
+                                class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-danger btn-xs btn-delete" ng-click="confirmDelete(employee.id)">Delete</button>
+                    <button title="Delete" class="btn btn-danger btn-xs btn-delete"
+                            ng-click="confirmDelete('delete', employee.id)">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>
         </table>
+
+        <div class="modal fade" id="empModel" tabindex="1" role="dialog" aria-labelledby="empModel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button title="Close" type="button" class="close" data-dismiss="modal" aria-label="close">
+                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                        </button>
+                        <h4>@{{ form_title }}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frmEmployee" class="form-horizontal" novalidate="">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Emp ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="employee_id" id="employee_id" class="form-control"
+                                           placeholder="Employee ID" value="@{{ employee_id }}"
+                                           ng-model="employee.employee_id" ng-required="true">
+                                    <span style="color: #ff0039;"
+                                          ng-show="frmEmployee.employee_id.$invalid && frmEmployee.employee_id.$touched">Employee ID required</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="name" id="name" class="form-control"
+                                           placeholder="Employee Name" value="@{{ name }}"
+                                           ng-model="employee.name" ng-required="true">
+                                    <span style="color: #ff0039;"
+                                          ng-show="frmEmployee.name.$invalid && frmEmployee.name.$touched">Employee Name required</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" name="email" id="email" class="form-control"
+                                           placeholder="Employee email" value="@{{ email }}"
+                                           ng-model="employee.email" ng-required="true">
+                                    <span style="color: #ff0039;"
+                                          ng-show="frmEmployee.email.$invalid && frmEmployee.email.$touched">Employee Email required</span>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Branch</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="branch" id="branch" class="form-control"
+                                           placeholder="Employee Branch" value="@{{ branch }}"
+                                           ng-model="employee.branch" ng-required="true">
+                                    <span style="color: #ff0039;"
+                                          ng-show="frmEmployee.branch.$invalid && frmEmployee.branch.$touched">Employee Branch required</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-save" ng-click="save(modelstate, id)"
+                                ng-disabled="frmEmployee.$invalid">Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 
 </body>
