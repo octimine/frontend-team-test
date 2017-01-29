@@ -1,10 +1,22 @@
 <?php
 
+/**
+ * @author : Harisankar.M.R <mrsank@live.in>
+ * @date : 29.01.2016
+ * @file: EmployeeController.php
+ * @path: app/Http/Controllers/EmployeeController.php
+ * @description: Controller
+ */
+
 namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
 
+/**
+ * Class EmployeeController
+ * @package App\Http\Controllers
+ */
 class EmployeeController extends Controller
 {
     /**

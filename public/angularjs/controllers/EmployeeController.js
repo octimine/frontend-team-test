@@ -1,3 +1,11 @@
+/**
+ * @author : Harisankar.M.R <mrsank@live.in>
+ * @date : 29.01.2016
+ * @file: EmployeeController.js
+ * @path: public/angularjs/controllers/EmployeeController.js
+ * @description : EmployeeController for create, update and delete function of the employee data
+ */
+
 app.controller('EmployeeController', function ($scope, $http, API_URL) {
     $http.get(API_URL + "employee")
         .success(function (response) {

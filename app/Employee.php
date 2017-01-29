@@ -1,9 +1,21 @@
 <?php
 
+/**
+ * @author : Harisankar.M.R <mrsank@live.in>
+ * @date : 29.01.2016
+ * @file: Employee.php
+ * @path: app/Employee.php
+ * @description: Model
+ */
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Employee
+ * @package App
+ */
 class Employee extends Model
 {
     /**
